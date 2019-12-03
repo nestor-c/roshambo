@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<htm>
+<head>
+
+</head>
+<body>
+    <script>
+        function computerPlay(){
+            var choice = Math.floor((Math.random()*3) + 1);           
+            switch(choice){
+                case 1:
+                    return 'Rock';
+                    break;
+                case 2:
+                    return 'Paper';
+                    break;
+                case 3:
+                    return 'Scissor'
+                    break;
+                default: return 'Not sure how but the computer choice was not one of the three options.'
+            }
+        }
+        function playRound(playerSelection, computerSelection){
+            var player = playerSelection.toLowerCase();
+            var computer = computerSelection.toLowerCase();
+            
+            if (player==='rock' && computer ==='paper') {return -1 }
+            else if (player==='scissor' && computer ==='rock') {return -1}
+            else if (player==='paper' && computer ==='scissor') {return -1}
+            else if (player==='paper' && computer ==='rock') {return 1}
+            else if (player==='rock' && computer ==='scissor') {return 1}
+            else if (player==='scissor' && computer ==='paper') {return 1}
+            else if (player === computer) {return 0}           
+        }
+        function game(){
+            var playerScore = 0;
+            var computerScore = 0; 
+            while (playerScore <5 && computerScore < 5){
+                var playerChoice = window.prompt('Enter your choice of rock, paper, or scissor: ');
+                var computerChoice = computerPlay();
+                if(playRound(playerChoice,computerChoice) === 1) {
+                    console.log('You win this round! +1 point for you! ');
+                    playerScore++;
+                    console.log('Player: ' + playerScore);
+                    console.log('Computer: ' + computerScore)
+                }else if(playRound(playerChoice,computerChoice) === -1){
+                    console.log('You lose this round! +1 point for computer!')
+                    computerScore++;
+                    console.log('Player: ' + playerScore);
+                    console.log('Computer: ' + computerScore)
+                }
+                else if(playRound(playerChoice,computerChoice) === 0) {
+                    console.log('You tie this round! No points for anyone!');
+                }                   
+            }
+            if (playerScore == 5){
+                console.log("You won the game!")
+            }
+            else if(computerScore == 5){
+                console.log("You lost the game. Better luck next time.")
+            }
+        }
+        game();
+    </script>
+</body>
+
+</html>
